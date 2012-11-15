@@ -1,0 +1,4 @@
+AutoFilter is a Matlab script that estimates the autoregression kernel of a noisy input signal using a simple low-pass filter.
+
+(c) Jack Peterson, 2011
+License: GPL
