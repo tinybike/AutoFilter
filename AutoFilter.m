@@ -28,7 +28,7 @@ T = length(t);
 % Calculate AR kernel
 dS = S(2:T) - S(1:T-1);
 P = sparse(toeplitz(S(1:T-1),cat(2,S(1),zeros(1,T-2))));
-K = P^(-1)*dS';
+K = P\dS';
 
 % "Running average" low-pass filter
 f = sparse(cat(2,[2 1],zeros(1,T-2)));
@@ -64,7 +64,7 @@ for k = 1:noisemax
             dSEf = SEf(2:T) - SEf(1:T-1);
             dSEf = Fn(1:T-1,1:T-1)*dSEf;
             PEf = sparse(toeplitz(SEf(1:T-1),cat(2,SEf(1),zeros(1,T-2))));
-            KEf(:,i) = PEf^(-1)*dSEf;
+            KEf(:,i) = PEf\dSEf;
             KEf(:,i) = Fn(1:T-1,1:T-1)*KEf(:,i);
             
             % Two-sample KS test of estimated vs. exact kernel
